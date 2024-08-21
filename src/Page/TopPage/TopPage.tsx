@@ -9,7 +9,7 @@ import { Btn } from "../const";
 type TopPageProps = {
   firstQuestion: string;
 };
-
+// test
 export const TopPage = ({ firstQuestion }: TopPageProps) => {
   return (
     <>
