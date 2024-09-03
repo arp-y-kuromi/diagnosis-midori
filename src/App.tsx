@@ -1,7 +1,5 @@
-import { Box } from "@mui/material";
-import { Header } from "./Header/Header";
 import { TopPage } from "./Page/TopPage/TopPage";
-
+import { Header } from "./Header/Header";
 
 export const App = () => {
   const handleClick = () => {};
