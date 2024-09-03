@@ -1,7 +1,10 @@
+import img_bg from "../../Image/img_bg.jpg";
+
 export const pagePosition = {
-  backgroundColor: "#ccffcc",
+  backgroundImage: `url(${img_bg})`,
+  backgroundSize: "100% 90%",
   display: "flex",
-  justifyContent: "center",
+  flexDirection: "column",
   alignItems: "center",
   height: "100vh",
 };
@@ -14,6 +17,7 @@ export const formPosition = {
   flexDirection: "column",
   padding: "20px",
   gap: "1rem",
+  marginTop: "10px",
 };
 
 export const questionTitle = {
