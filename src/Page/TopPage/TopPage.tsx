@@ -6,7 +6,7 @@ import {
   questionTitle,
 } from "./style";
 import { Btn } from "../const";
-import img_FV from "../../Image/img_FV.png";
+import img_midori_FV from "../../Image/img_midori_FV.png";
 
 type TopPageProps = {
   question: string;
@@ -28,7 +28,7 @@ export const TopPage = ({
   return (
     <>
       <Box sx={pagePosition}>
-        <img src={img_FV} alt="質問" style={{ marginTop: "80px" }} />
+        <img src={img_midori_FV} alt="質問" style={{ marginTop: "80px" }} />
         <Card sx={formPosition}>
           <div style={questionTitle}>{question}</div>
           <div style={questionBtn}>

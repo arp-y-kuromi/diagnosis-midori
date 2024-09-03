@@ -1,7 +1,7 @@
-import img_bg from "../../Image/img_bg.jpg";
+import img_midori from "../../Image/img_midori-bg.png";
 
 export const pagePosition = {
-  backgroundImage: `url(${img_bg})`,
+  backgroundImage: `url(${img_midori})`,
   backgroundSize: "100% 90%",
   display: "flex",
   flexDirection: "column",
