@@ -6,19 +6,36 @@ import {
   questionTitle,
 } from "./style";
 import { Btn } from "../const";
+import img_FV from "../../Image/img_FV.png";
+
 type TopPageProps = {
-  firstQuestion: string;
+  question: string;
+  firstBtn: string;
+  secondBtn: string;
+  thirdBtn: string;
+  fourthBtn: string;
+  onClick?: () => void;
 };
-// test
-export const TopPage = ({ firstQuestion }: TopPageProps) => {
+
+export const TopPage = ({
+  question,
+  firstBtn,
+  secondBtn,
+  thirdBtn,
+  fourthBtn,
+  onClick,
+}: TopPageProps) => {
   return (
     <>
       <Box sx={pagePosition}>
+        <img src={img_FV} alt="質問" style={{ marginTop: "80px" }} />
         <Card sx={formPosition}>
-          <div style={questionTitle}>{firstQuestion}</div>
+          <div style={questionTitle}>{question}</div>
           <div style={questionBtn}>
-            <Btn name="0~49万円" /> <Btn name="50~99万円" />
-            <Btn name="100~199万円" /> <Btn name="200万円以上" />
+            <Btn name={firstBtn} onClick={onClick} />
+            <Btn name={secondBtn} onClick={onClick} />
+            <Btn name={thirdBtn} onClick={onClick} />
+            <Btn name={fourthBtn} onClick={onClick} />
           </div>
         </Card>
       </Box>
