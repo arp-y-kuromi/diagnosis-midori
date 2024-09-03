@@ -1,4 +1,4 @@
-import { TopPage } from "./Page/TopPage/TopPage";
+import { QuestionPage } from "./Page/TopPage/TopPage";
 import { Header } from "./Header/Header";
 
 export const App = () => {
@@ -6,7 +6,7 @@ export const App = () => {
   return (
     <>
       <Header headerTitle="司法書士法人みどり法務事務所" />
-      <TopPage
+      <QuestionPage
         question="Q1.現在の借入金額を教えてください"
         firstBtn="0~49万円"
         secondBtn="50~99万円"
