@@ -11,7 +11,7 @@ export const pagePosition = {
 
 export const formPosition = {
   width: "600px",
-  height: "250px",
+  height: "auto",
   display: "flex",
   justifyContent: "flex-start",
   flexDirection: "column",
