@@ -1,44 +1,43 @@
-import { Box, Card } from "@mui/material";
-import {
-  formPosition,
-  pagePosition,
-  questionBtn,
-  questionTitle,
-} from "./style";
-import { Btn } from "../const";
-import img_midori_FV from "../../Image/img_midori_FV.png";
+import React, { useState } from 'react';
 
-type TopPageProps = {
-  question: string;
-  firstBtn: string;
-  secondBtn: string;
-  thirdBtn: string;
-  fourthBtn: string;
-  onClick?: () => void;
-};
+const EmailForm: React.FC = () => {
+  const [email, setEmail] = useState('');
+  const [responseMessage, setResponseMessage] = useState('');
 
-export const TopPage = ({
-  question,
-  firstBtn,
-  secondBtn,
-  thirdBtn,
-  fourthBtn,
-  onClick,
-}: TopPageProps) => {
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    try {
+      const response = await fetch('http://localhost:3001/sendmail', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email }),
+      });
+
+      if (response.ok) {
+        setResponseMessage('メールが送信されました。');
+      } else {
+        setResponseMessage('メールの送信に失敗しました。');
+      }
+    } catch (error) {
+      setResponseMessage('エラーが発生しました。');
+    }
+  };
+
   return (
-    <>
-      <Box sx={pagePosition}>
-        <img src={img_midori_FV} alt="質問" style={{ marginTop: "80px" }} />
-        <Card sx={formPosition}>
-          <div style={questionTitle}>{question}</div>
-          <div style={questionBtn}>
-            <Btn name={firstBtn} onClick={onClick} />
-            <Btn name={secondBtn} onClick={onClick} />
-            <Btn name={thirdBtn} onClick={onClick} />
-            <Btn name={fourthBtn} onClick={onClick} />
-          </div>
-        </Card>
-      </Box>
-    </>
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        name="mail"
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+      />
+      <button type="submit">送信</button>
+      {responseMessage && <p>{responseMessage}</p>}
+    </form>
   );
 };
+
+export default EmailForm;

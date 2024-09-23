@@ -1,13 +1,47 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>司法書士法人みどり法務事務所</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>メール送信フォーム</title>
+</head>
+<body>
+    <h1>メール送信フォーム</h1>
+
+    <?php
+    // エラーログを有効化
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // フォームからのデータを受け取る
+        $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+
+        // メールアドレスのバリデーション
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) {
+            $to = "your-email@example.com";  // 送信先のメールアドレス
+            $subject = "新しいメールアドレスの登録";
+            $message = "以下のメールアドレスが登録されました: " . $email;
+            $headers = "From: noreply@yourdomain.com";
+
+            // メール送信
+            if (mail($to, $subject, $message, $headers)) {
+                echo "<p>メールが送信されました。</p>";
+            } else {
+                echo "<p>メールの送信に失敗しました。</p>";
+            }
+        } else {
+            echo "<p>無効なメールアドレスです。</p>";
+        }
+    }
+    ?>
+
+    <form action="" method="post">
+        <label for="email">メールアドレス:</label>
+        <input type="text" id="email" name="email" required>
+        <button type="submit">送信</button>
+    </form>
+</body>
 </html>
