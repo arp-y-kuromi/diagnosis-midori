@@ -15,9 +15,8 @@ export const formPosition = {
   display: "flex",
   justifyContent: "flex-start",
   flexDirection: "column",
-  padding: "20px",
+  padding: "50px",
   gap: "1rem",
-  marginTop: "10px",
 };
 
 export const questionTitle = {

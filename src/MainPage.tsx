@@ -38,11 +38,7 @@ export const MainPage = () => {
             />
           )}
           {thirdOpen && (
-            <ThirdQuestion
-              repayment={repayment}
-              setRepayment={setRepayment}
-              setThirdOpen={setThirdOpen}
-            />
+            <ThirdQuestion repayment={repayment} setRepayment={setRepayment} />
           )}
         </Card>
       </Box>
