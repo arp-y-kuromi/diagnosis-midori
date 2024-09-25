@@ -1,20 +1,21 @@
 import { Dispatch, SetStateAction, useEffect } from "react";
 import { Question } from "./Question/Question";
+import { useNavigate } from "react-router-dom";
 
 type ThirdQuestionProps = {
   repayment: string;
   setRepayment: Dispatch<SetStateAction<string>>;
-  setThirdOpen: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export const ThirdQuestion = ({
   repayment,
   setRepayment,
-  setThirdOpen,
 }: ThirdQuestionProps) => {
+  const navigate = useNavigate();
+
   const handleClick = (loan: string) => {
     setRepayment(loan);
-    setThirdOpen(false);
+    navigate("/form");
   };
 
   useEffect(() => {
