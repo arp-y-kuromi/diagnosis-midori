@@ -6,45 +6,53 @@ import {
   Theme,
   Typography,
 } from "@mui/material";
+import {
+  FieldValues,
+  UseControllerProps,
+  useController,
+} from "react-hook-form";
 
-type FormTextFieldType = {
+type FormTextFieldType<T extends FieldValues> = {
   label?: React.ReactNode;
-  errorMessage?: string;
   name?: string;
   rows?: number;
   placeholder?: string;
   sx?: SxProps<Theme>;
   errSx?: SxProps<Theme>;
-};
+} & UseControllerProps<T>;
 
-const ERROR_MARGIN_SX = { ml: "8px" };
+export const ERROR_MARGIN_SX = { ml: "8px" };
 
-export const FormTextField = ({
+export const FormTextField = <T extends FieldValues>({
   label,
-  errorMessage = "",
   name,
   rows,
   placeholder,
   sx,
   errSx,
-}: FormTextFieldType) => {
+  control,
+}: FormTextFieldType<T>) => {
+  const {
+    field: { ref, ...rest },
+    fieldState: { error },
+  } = useController({ name, control });
   return (
     <Box>
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <TextField
           label={label}
-          error={!!errorMessage}
-          name={name}
           rows={rows}
           placeholder={placeholder}
           sx={sx}
+          {...rest}
+          inputRef={ref}
         />
       </Box>
-      {!!errorMessage && (
+      {!!error && (
         <FormHelperText sx={{ ...ERROR_MARGIN_SX, ...errSx }} error>
           {
             <Typography variant="caption" sx={{ whiteSpace: "pre-wrap" }}>
-              {errorMessage}
+              {error?.message}
             </Typography>
           }
         </FormHelperText>
