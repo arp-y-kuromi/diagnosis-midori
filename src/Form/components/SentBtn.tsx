@@ -1,9 +1,41 @@
-import { Button } from "@mui/material";
+import { Theme } from "@emotion/react";
+import { Box, Button, SxProps } from "@mui/material";
 
-export const SentBtn = () => {
+type SentBtnType = {
+  name: React.ReactNode;
+  onClick?: () => void;
+  type?: "button" | "submit";
+  sx?: SxProps<Theme>;
+  disabled?: boolean;
+};
+
+export const SentBtn = ({
+  name,
+  onClick,
+  type = "button",
+  sx,
+  disabled = false,
+}: SentBtnType) => {
   return (
     <>
-      <Button variant="contained">送信する</Button>
+      <Box
+        sx={{
+          alignItems: "center",
+          justifyContent: "center",
+          display: "flex",
+          mt: "10px",
+        }}
+      >
+        <Button
+          variant="contained"
+          onClick={onClick}
+          type={type}
+          sx={sx}
+          disabled={disabled}
+        >
+          {name}
+        </Button>
+      </Box>
     </>
   );
 };
