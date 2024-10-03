@@ -6,8 +6,8 @@ import { Form } from "./Form/Form";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <Router>
     <Routes>
-      <Route path="/" element={<MainPage />} />
-      <Route path="/form" element={<Form />} />
+      <Route path="/diagnosis-midori" element={<MainPage />} />
+      <Route path="/diagnosis-midori/form" element={<Form />} />
     </Routes>
   </Router>
 );
