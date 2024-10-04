@@ -15,7 +15,7 @@ export const ThirdQuestion = ({
 
   const handleClick = (loan: string) => {
     setRepayment(loan);
-    navigate("/form");
+    navigate("navigate/form");
   };
 
   useEffect(() => {
