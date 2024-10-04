@@ -15,7 +15,7 @@ export const ThirdQuestion = ({
 
   const handleClick = (loan: string) => {
     setRepayment(loan);
-    navigate("navigate/form");
+    navigate("/diagnosis-midori/form");
   };
 
   useEffect(() => {
