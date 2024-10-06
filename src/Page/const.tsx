@@ -18,8 +18,14 @@ export const Btn = ({ name, onClick, btnNumber }: Props) => {
     padding: "1rem 2rem",
     fontSize: "1.5rem",
     borderRadius: "0.25rem",
+    whiteSpace: "nowrap",
+    width: "100%",
     boxShadow: isHovered ? "none" : "0 4px 0 #0000BB",
     transform: isHovered ? "translateY(4px)" : "none",
+    "@media (max-width: 500px)": {
+      padding: "0.25rem 0.5rem", // モバイル用にさらに小さく
+      fontSize: "0.8rem",
+    },
   };
 
   return (
