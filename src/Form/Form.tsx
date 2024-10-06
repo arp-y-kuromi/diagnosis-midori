@@ -7,7 +7,7 @@ import { SentBtn } from "./components/SentBtn";
 import { useForm } from "react-hook-form";
 import { FormSchema, FormType } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const FORM_TEXT_FIELD_SX = {
   width: "500px",
@@ -32,13 +32,13 @@ export const Form = () => {
     defaultValues: DEFAULT_VALUES,
   });
 
-  const [message, setMessage] = useState("");
+  const navigte = useNavigate();
 
   const onSubmit = async (data: FormType) => {
     try {
       console.log(data);
-      setMessage("送信しました。事務所からお電話のご連絡をお待ちください。");
       reset(DEFAULT_VALUES);
+      navigte("/diagnosis-midori/success");
     } catch (error) {
       console.error("送信に失敗しました:", error);
     }
@@ -84,9 +84,6 @@ export const Form = () => {
               />
               <SentBtn name="送信する" type="submit" disabled={!isValid} />
             </form>
-            {message && (
-              <Box sx={{ mt: "20px", color: "green" }}>{message}</Box>
-            )}
           </Box>
         </Card>
       </Box>
