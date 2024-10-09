@@ -2,7 +2,7 @@
   "name": "diagnosis-midori",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://arp-y-kuromi.github.io/diagnosis-midori/",
+  "homepage": "https://arp-y-kuromi.github.io",
   "type": "module",
   "scripts": {
     "dev": "vite",
