@@ -1,5 +1,5 @@
 import ReactDOM from "react-dom/client";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { MainPage } from "./MainPage";
 import { Form } from "./Form/Form";
 import { SentSuccess } from "./SentSuccess/SentSuccess";
