@@ -6,6 +6,6 @@ export default defineConfig({
   plugins: [react()],
   base: "/diagnosis-midori/",
   build: {
-    outDir: "build",
+    outDir: "docs",
   },
 });
