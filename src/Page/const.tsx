@@ -10,7 +10,7 @@ type Props = {
 export const Btn = ({ name, onClick, btnNumber }: Props) => {
   const [isHovered, setIsHovered] = useState(false);
 
-  const btnStyle = {
+  const btnStyle: Record<string, any> = {
     border: "1px solid #3b82f6",
     backgroundColor: "#3b82f6",
     color: "white",
@@ -22,7 +22,7 @@ export const Btn = ({ name, onClick, btnNumber }: Props) => {
     width: "100%",
     boxShadow: isHovered ? "none" : "0 4px 0 #0000BB",
     transform: isHovered ? "translateY(4px)" : "none",
-    "@media (max-width: 500px)": {
+    "@media (maxWidth: 500px)": {
       padding: "0.25rem 0.5rem", // モバイル用にさらに小さく
       fontSize: "0.8rem",
     },

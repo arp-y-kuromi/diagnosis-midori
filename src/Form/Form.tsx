@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { FormSchema, FormType } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
+import emailjs from "@emailjs/browser";
 
 const FORM_TEXT_FIELD_SX = {
   width: "500px",
@@ -35,8 +36,12 @@ export const Form = () => {
   const navigte = useNavigate();
 
   const onSubmit = async (data: FormType) => {
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
+    const publicId = import.meta.env.VITE_EMAILJS_PUBLIC_ID as string;
+
     try {
-      console.log(data);
+      await emailjs.send(serviceId, templateId, data, publicId);
       reset(DEFAULT_VALUES);
       navigte("/diagnosis-midori/success");
     } catch (error) {

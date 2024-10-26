@@ -20,7 +20,20 @@ export const MainPage = () => {
     <>
       <Box sx={pagePosition}>
         <img src={img_midori_FV} alt="質問" style={{ marginTop: "80px" }} />
-        <Card sx={formPosition}>
+        <Card
+          sx={{
+            ...formPosition,
+            "@media (max-width: 750px)": {
+              width: "400px",
+            },
+            "@media (max-width: 500px)": {
+              width: "300px",
+            },
+            "@media (max-width: 430px)": {
+              width: "200px",
+            },
+          }}
+        >
           {open && (
             <FirstQuestion
               loanAmount={loanAmount}
