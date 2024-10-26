@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Question } from "./Question/Question";
 
 type SecondQuestionProps = {
@@ -19,10 +19,6 @@ export const SecondQuestion = ({
     setSecondOpen(false);
     setThirdOpen(true);
   };
-
-  useEffect(() => {
-    console.log(loanPeriod);
-  }, [loanPeriod]);
 
   return (
     <>

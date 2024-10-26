@@ -1,5 +1,5 @@
 import { Question } from "./Question/Question";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 
 type FirstQuestionProps = {
   loanAmount: string;
@@ -19,10 +19,6 @@ export const FirstQuestion = ({
     setOpen(false);
     setSecondOpen(true);
   };
-
-  useEffect(() => {
-    console.log(loanAmount);
-  }, [loanAmount]);
 
   return (
     <>

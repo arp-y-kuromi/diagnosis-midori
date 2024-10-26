@@ -9,6 +9,8 @@ import { FormSchema, FormType } from "./schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
+import { loanAmountAtom, loanPeriodAtom, repaymentAtom } from "../Atom/Atom";
+import { useAtom } from "jotai";
 
 const FORM_TEXT_FIELD_SX = {
   width: "500px",
@@ -20,6 +22,12 @@ const DEFAULT_VALUES: FormType = {
   email: "",
   telephoneNumber: "",
 };
+
+type SendDataType = {
+  loanAmount: string;
+  loanPeriod: string;
+  repayment: string;
+} & FormType;
 
 export const Form = () => {
   const {
@@ -34,14 +42,23 @@ export const Form = () => {
   });
 
   const navigte = useNavigate();
+  const [loanAmount] = useAtom(loanAmountAtom);
+  const [loanPeriod] = useAtom(loanPeriodAtom);
+  const [repayment] = useAtom(repaymentAtom);
 
   const onSubmit = async (data: FormType) => {
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
     const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
     const publicId = import.meta.env.VITE_EMAILJS_PUBLIC_ID as string;
+    const sendData: SendDataType = {
+      ...data,
+      loanAmount,
+      loanPeriod,
+      repayment,
+    };
 
     try {
-      await emailjs.send(serviceId, templateId, data, publicId);
+      await emailjs.send(serviceId, templateId, sendData, publicId);
       reset(DEFAULT_VALUES);
       navigte("/diagnosis-midori/success");
     } catch (error) {

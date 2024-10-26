@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { Question } from "./Question/Question";
 import { useNavigate } from "react-router-dom";
 
@@ -17,10 +17,6 @@ export const ThirdQuestion = ({
     setRepayment(loan);
     navigate("/diagnosis-midori/form");
   };
-
-  useEffect(() => {
-    console.log(repayment);
-  }, [repayment]);
 
   return (
     <>

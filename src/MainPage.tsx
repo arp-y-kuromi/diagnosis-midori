@@ -5,12 +5,14 @@ import { Box, Card } from "@mui/material";
 import { formPosition, pagePosition } from "./Page/Question/style";
 import img_midori_FV from "./Image/img_midori_FV.png";
 import { useState } from "react";
+import { useAtom } from "jotai";
+import { loanAmountAtom, loanPeriodAtom, repaymentAtom } from "./Atom/Atom";
 
 export const MainPage = () => {
   // 質問の状態を管理
-  const [loanAmount, setLoanAmount] = useState("");
-  const [loanPeriod, setLoanPeriod] = useState("");
-  const [repayment, setRepayment] = useState("");
+  const [loanAmount, setLoanAmount] = useAtom(loanAmountAtom);
+  const [loanPeriod, setLoanPeriod] = useAtom(loanPeriodAtom);
+  const [repayment, setRepayment] = useAtom(repaymentAtom);
 
   const [open, setOpen] = useState(true);
   const [secondOpen, setSecondOpen] = useState(false);
