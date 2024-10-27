@@ -46,7 +46,7 @@ export const FormTextField = <T extends FieldValues>({
           width: "300px",
         },
         "@media (max-width: 430px)": {
-          width: "220px",
+          width: "280px",
         },
       }}
     >
