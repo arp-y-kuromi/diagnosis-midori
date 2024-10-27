@@ -37,7 +37,19 @@ export const FormTextField = <T extends FieldValues>({
     fieldState: { error },
   } = useController({ name, control });
   return (
-    <Box>
+    <Box
+      sx={{
+        "@media (max-width: 750px)": {
+          width: "380px",
+        },
+        "@media (max-width: 540px)": {
+          width: "300px",
+        },
+        "@media (max-width: 430px)": {
+          width: "220px",
+        },
+      }}
+    >
       <Box sx={{ display: "flex", alignItems: "center" }}>
         <TextField
           label={label}

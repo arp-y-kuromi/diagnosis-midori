@@ -11,29 +11,46 @@ export const FormMessage = () => {
         borderRadius: "4px",
         width: "400px",
         marginBottom: "20px",
+        "@media (max-width: 750px)": {
+          width: "300px",
+        },
+        "@media (max-width: 540px)": {
+          width: "250px",
+        },
+        "@media (max-width: 430px)": {
+          width: "230px",
+          padding: "10px",
+        },
       }}
     >
-      <div
-        style={{
+      <Box
+        sx={{
           fontSize: "15px",
           lineHeight: "1.8",
+          "@media (max-width: 750px)": {
+            fontSize: "12px",
+          },
+          "@media (max-width: 540px)": {
+            fontSize: "10px",
+          },
         }}
       >
         あなたの借金が減額される可能性があり
         <br />
-        <span
-          style={{
+        <Box
+          sx={{
             color: "green",
             fontWeight: "bold",
             fontSize: "16px",
-            lineHeight: "1.8",
+            "@media (max-width: 750px)": {
+              fontSize: "12px",
+            },
           }}
         >
           完済に向けた具体的な目処を立てることができます。
-        </span>
-        <br />
-        詳細なご案内のため、以下のフォームをご入力ください。
-      </div>
+        </Box>
+        詳細なご案内のためフォームをご入力ください。
+      </Box>
     </Box>
   );
 };

@@ -1,5 +1,6 @@
 import { questionBtn, questionTitle } from "../style";
 import { Btn } from "../../const";
+import { Box } from "@mui/material";
 
 type QuestionContentPropsType = {
   question: string;
@@ -27,7 +28,7 @@ export const QuestionContent = ({
 }: QuestionContentPropsType) => {
   return (
     <>
-      <div style={questionTitle}>{question}</div>
+      <Box sx={questionTitle}>{question}</Box>
       <div style={questionBtn}>
         <Btn name={firstBtn} onClick={onClickFirst} />
         <Btn name={secondBtn} onClick={onClickSecond} />
