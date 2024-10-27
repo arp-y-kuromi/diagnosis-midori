@@ -62,7 +62,7 @@ export const Form = () => {
       reset(DEFAULT_VALUES);
       navigte("/diagnosis-midori/success");
     } catch (error) {
-      console.error("送信に失敗しました:", error);
+      console.error("送信に失敗しました:");
     }
   };
   return (
