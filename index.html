@@ -4,26 +4,26 @@
     <script>
       window.acs_cbs = window.acs_cbs || [];
       (function acsKeep() {
-        const PK = "pid";
-        const IMK = "im";
-        const LKEYS = { cid: ["cid", "CL_", "ACT_"] };
-        const DKEYS = [];
-        const PDIR = "./";
-        const durl = "https://s13.aspservice.jp/in3/direct.php";
+        var PK = "pid";
+        var IMK = "im";
+        var LKEYS = { cid: ["cid", "CL_", "ACT_"] };
+        var DKEYS = [];
+        var PDIR = "./";
+        var durl = "https://s13.aspservice.jp/in3/direct.php";
         function saveCookies(data) {
-          const p = data[PK];
-          const out = Object.keys(LKEYS).reduce(function (ret, k) {
+          var p = data[PK];
+          var out = Object.keys(LKEYS).reduce(function (ret, k) {
             if (k in data && data[k]) ret[k] = data[k];
             return ret;
           }, {});
           if (!p || !Object.keys(out).length) return;
-          const purl = PDIR + "lptag.php?p=" + p;
+          var purl = PDIR + "lptag.php?p=" + p;
           Object.keys(out).forEach(function (k) {
             purl += "&" + LKEYS[k][0] + "=" + out[k];
             localStorage.setItem(LKEYS[k][1] + p, out[k]);
           });
-          const xhr = new XMLHttpRequest();
-          const args =
+          var xhr = new XMLHttpRequest();
+          var args =
             "; expires=" +
             new Date(new Date().getTime() + 63072000000).toUTCString() +
             "; path=/; SameSite=None; Secure";
@@ -46,11 +46,11 @@
           };
           xhr.send();
         }
-        const data = location.search
+        var data = location.search
           .substring(1)
           .split("&")
           .reduce(function (ret, s) {
-            const kv = s.split("=");
+            var kv = s.split("=");
             if (kv[1]) ret[kv[0]] = kv[1];
             return ret;
           }, {});
@@ -63,7 +63,7 @@
           if (!(k in data)) return;
           durl += "&" + k + "=" + data[k];
         });
-        const xhr = new XMLHttpRequest();
+        var xhr = new XMLHttpRequest();
         xhr.open("GET", durl);
         function merge(a, b) {
           return Object.keys(LKEYS).reduce(function (ret, k) {
@@ -74,7 +74,7 @@
         xhr.onloadend = function () {
           if (xhr.status !== 200) return;
           try {
-            const xhr_data = JSON.parse(xhr.responseText);
+            var xhr_data = JSON.parse(xhr.responseText);
             if (PK != "p") {
               xhr_data[PK] = xhr_data["p"];
             }
