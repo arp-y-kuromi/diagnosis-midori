@@ -1,8 +1,13 @@
 import { Box, Card, Typography } from "@mui/material";
 import { pagePosition, formPosition } from "../Page/Question/style";
 import img_midori_FV from "../Image/img_midori_FV.png";
+import { useEffect } from "react";
+import { trackSentSuccess } from "./const";
 
 export const SentSuccess = () => {
+  useEffect(() => {
+    trackSentSuccess();
+  }, []);
   return (
     <>
       <Box sx={pagePosition}>
