@@ -78,6 +78,10 @@ export const Form = () => {
             height: "160px",
             "@media (max-width: 650px)": {
               width: "90%",
+              height: "120px",
+            },
+            "@media (max-width: 480px)": {
+              height: "80px",
             },
           }}
         />

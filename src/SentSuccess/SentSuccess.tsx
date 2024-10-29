@@ -6,7 +6,23 @@ export const SentSuccess = () => {
   return (
     <>
       <Box sx={pagePosition}>
-        <img src={img_midori_FV} alt="質問" />
+        <Box
+          sx={{
+            backgroundImage: `url(${img_midori_FV})`,
+            backgroundRepeat: "no-repeat",
+            backgroundPosition: "center",
+            backgroundSize: "contain",
+            width: "100%",
+            height: "160px",
+            "@media (max-width: 650px)": {
+              width: "90%",
+              height: "120px",
+            },
+            "@media (max-width: 480px)": {
+              height: "80px",
+            },
+          }}
+        />
         <Card sx={formPosition}>
           <Box
             sx={{
