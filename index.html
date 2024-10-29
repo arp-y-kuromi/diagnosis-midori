@@ -7,99 +7,81 @@
         const PK = "pid";
         const IMK = "im";
         const LKEYS = { cid: ["cid", "CL_", "ACT_"] };
+        const DKEYS = [];
         const PDIR = "./";
-        const durlBase = "https://s13.aspservice.jp/in3/direct.php";
-        const cookieExpiry = new Date(Date.now() + 63072000000).toUTCString();
-        const args = `; expires=${cookieExpiry}; path=/; SameSite=None; Secure`;
-
-        // クッキーとローカルストレージにデータを保存
+        const durl = "https://s13.aspservice.jp/in3/direct.php";
         function saveCookies(data) {
           const p = data[PK];
-          const filteredData = filterDataByKeys(data, LKEYS);
-
-          if (!p || !Object.keys(filteredData).length) return;
-
-          let purl = `${PDIR}lptag.php?p=${p}`;
-          Object.keys(filteredData).forEach((key) => {
-            purl += `&${LKEYS[key][0]}=${filteredData[key]}`;
-            localStorage.setItem(`${LKEYS[key][1]}${p}`, filteredData[key]);
+          const out = Object.keys(LKEYS).reduce(function (ret, k) {
+            if (k in data && data[k]) ret[k] = data[k];
+            return ret;
+          }, {});
+          if (!p || !Object.keys(out).length) return;
+          const purl = PDIR + "lptag.php?p=" + p;
+          Object.keys(out).forEach(function (k) {
+            purl += "&" + LKEYS[k][0] + "=" + out[k];
+            localStorage.setItem(LKEYS[k][1] + p, out[k]);
           });
-
-          sendRequest(purl, () => {
-            if (xhr.status === 200 && xhr.response === "") {
-              executeCallbacks();
-            } else {
-              saveDataToCookies(filteredData, p);
-              executeCallbacks();
-            }
-          });
-        }
-
-        // フィルタリングされたデータをクッキーに保存
-        function saveDataToCookies(data, p) {
-          Object.keys(data).forEach((key) => {
-            document.cookie = `${LKEYS[key][1]}${p}=${decodeURIComponent(
-              data[key]
-            )}${args}`;
-            if (LKEYS[key][2])
-              document.cookie = `${LKEYS[key][2]}${p}=js${args}`;
-          });
-        }
-
-        // リクエスト送信用関数
-        function sendRequest(url, onLoadCallback) {
           const xhr = new XMLHttpRequest();
-          xhr.open("GET", url);
-          xhr.onloadend = onLoadCallback;
+          const args =
+            "; expires=" +
+            new Date(new Date().getTime() + 63072000000).toUTCString() +
+            "; path=/; SameSite=None; Secure";
+          xhr.open("GET", purl);
+          xhr.onloadend = function () {
+            if (xhr.status === 200 && xhr.response === "") {
+              window.acs_cbs.forEach(function (cb) {
+                cb();
+              });
+              return;
+            }
+            Object.keys(out).forEach(function (k) {
+              document.cookie =
+                LKEYS[k][1] + p + "=" + decodeURIComponent(out[k]) + args;
+              if (LKEYS[k][2]) document.cookie = LKEYS[k][2] + p + "=js" + args;
+            });
+            window.acs_cbs.forEach(function (cb) {
+              cb();
+            });
+          };
           xhr.send();
         }
-
-        // キーに基づいてデータをフィルタリング
-        function filterDataByKeys(data, keys) {
-          return Object.keys(keys).reduce((result, key) => {
-            if (data[key]) result[key] = data[key];
-            return result;
-          }, {});
-        }
-
-        // コールバック関数を実行
-        function executeCallbacks() {
-          window.acs_cbs.forEach((cb) => cb());
-        }
-
-        // クエリパラメータからデータを取得
         const data = location.search
           .substring(1)
           .split("&")
-          .reduce((result, s) => {
-            const [key, value] = s.split("=");
-            if (value) result[key] = value;
-            return result;
+          .reduce(function (ret, s) {
+            const kv = s.split("=");
+            if (kv[1]) ret[kv[0]] = kv[1];
+            return ret;
           }, {});
-
-        if (!data[IMK]) {
+        if (!(IMK in data)) {
           saveCookies(data);
           return;
         }
-
-        // ディレクトリURLの更新
-        let durl = `${durlBase}?im=${data[IMK]}&navi=${performance.navigation.type}`;
-        durl += Object.keys(data)
-          .filter((key) => DKEYS.includes(key))
-          .map((key) => `&${key}=${data[key]}`)
-          .join("");
-
-        // データをマージして送信
-        sendRequest(durl, () => {
+        durl += "?im=" + data[IMK] + "&navi=" + performance.navigation.type;
+        DKEYS.forEach(function (k) {
+          if (!(k in data)) return;
+          durl += "&" + k + "=" + data[k];
+        });
+        const xhr = new XMLHttpRequest();
+        xhr.open("GET", durl);
+        function merge(a, b) {
+          return Object.keys(LKEYS).reduce(function (ret, k) {
+            if (k in b && !(k in a)) ret[k] = b[k];
+            return ret;
+          }, a);
+        }
+        xhr.onloadend = function () {
           if (xhr.status !== 200) return;
           try {
-            const xhrData = JSON.parse(xhr.responseText);
-            if (PK !== "p") xhrData[PK] = xhrData["p"];
-            saveCookies({ ...xhrData, ...data });
-          } catch (e) {
-            console.error("Failed to parse response data", e);
-          }
-        });
+            const xhr_data = JSON.parse(xhr.responseText);
+            if (PK != "p") {
+              xhr_data[PK] = xhr_data["p"];
+            }
+            saveCookies(merge(xhr_data, data));
+          } catch (_) {}
+        };
+        xhr.send();
       })();
     </script>
     <meta charset="UTF-8" />
