@@ -4,7 +4,7 @@ const FOOTER_SX = {
   width: "100%",
   backgroundColor: "primary.main",
   textAlign: "center",
-  p: 2,
+  py: 1,
   mt: "auto",
   position: "fixed",
   bottom: 0,
@@ -13,6 +13,7 @@ const FOOTER_SX = {
 
 const FOOTER_TYPOGRAPHY_SX = {
   color: "white",
+  fontSize: "0.875rem",
   textDecoration: "none",
   "&:hover": {
     textDecoration: "underline",
@@ -28,7 +29,7 @@ export const Footer = () => {
         component="a"
         href="https://www.o-shihoushoshi.com/privacypolicy"
         target="_blank"
-        sx={{ ...FOOTER_TYPOGRAPHY_SX, mr: "20px" }}
+        sx={{ ...FOOTER_TYPOGRAPHY_SX, mr: "15px" }}
       >
         プライバシーポリシー
       </Typography>
@@ -47,7 +48,7 @@ export const Footer = () => {
           display: "block",
           color: "rgba(255, 255, 255, 0.7)",
           fontSize: "0.75rem",
-          mt: 1,
+          mt: 0.5,
         }}
       >
         Copyright©司法書士法人 みどり法務事務所 All rights reserved.
