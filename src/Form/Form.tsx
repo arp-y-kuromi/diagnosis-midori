@@ -11,6 +11,7 @@ import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import { loanAmountAtom, loanPeriodAtom, repaymentAtom } from "../Atom/Atom";
 import { useAtom } from "jotai";
+import { Footer } from "../Footer/Footer";
 
 const FORM_TEXT_FIELD_SX = {
   width: "500px",
@@ -125,6 +126,7 @@ export const Form = () => {
           </Box>
         </Card>
       </Box>
+      <Footer />
     </>
   );
 };

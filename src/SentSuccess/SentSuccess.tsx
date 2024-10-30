@@ -3,6 +3,7 @@ import { pagePosition, formPosition } from "../Page/Question/style";
 import img_midori_FV from "../Image/img_midori_FV.png";
 import { useEffect } from "react";
 import { trackSentSuccess } from "./const";
+import { Footer } from "../Footer/Footer";
 
 export const SentSuccess = () => {
   useEffect(() => {
@@ -50,6 +51,7 @@ export const SentSuccess = () => {
           </Box>
         </Card>
       </Box>
+      <Footer />
     </>
   );
 };

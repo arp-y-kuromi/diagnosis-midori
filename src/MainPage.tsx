@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useAtom } from "jotai";
 import { loanAmountAtom, loanPeriodAtom, repaymentAtom } from "./Atom/Atom";
 import img_midori_FV from "./Image/img_midori_FV.png";
+import { Footer } from "./Footer/Footer";
 
 export const MainPage = () => {
   // 質問の状態を管理
@@ -60,6 +61,7 @@ export const MainPage = () => {
           )}
         </Card>
       </Box>
+      <Footer />
     </>
   );
 };
