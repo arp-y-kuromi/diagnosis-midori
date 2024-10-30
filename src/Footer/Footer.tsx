@@ -40,7 +40,7 @@ export const Footer = () => {
         target="_blank"
         sx={FOOTER_TYPOGRAPHY_SX}
       >
-        会社概要
+        事務所概要
       </Typography>
       <Typography
         variant="caption"
