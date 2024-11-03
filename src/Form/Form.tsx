@@ -49,7 +49,10 @@ export const Form = () => {
 
   const onSubmit = async (data: FormType) => {
     const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string;
-    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string;
+    const templateId_Incube = import.meta.env
+      .VITE_EMAILJS_TEMPLATE_ID as string;
+    const templateId_Midori = import.meta.env
+      .VITE_EMAILJS_TEMPLATE_ID_2 as string;
     const publicId = import.meta.env.VITE_EMAILJS_PUBLIC_ID as string;
     const sendData: SendDataType = {
       ...data,
@@ -59,7 +62,9 @@ export const Form = () => {
     };
 
     try {
-      await emailjs.send(serviceId, templateId, sendData, publicId);
+      await emailjs.send(serviceId, templateId_Incube, sendData, publicId);
+      // みどり法務事務所宛に送信
+      await emailjs.send(serviceId, templateId_Midori, sendData, publicId);
       reset(DEFAULT_VALUES);
       navigte("/diagnosis-midori/success");
     } catch (error) {
