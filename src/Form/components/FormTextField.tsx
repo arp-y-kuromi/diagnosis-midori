@@ -56,16 +56,19 @@ export const FormTextField = <T extends FieldValues>({
       >
         <Typography
           sx={{
+            fontWeight: "bold",
             minWidth: "500px",
             "@media (max-width: 750px)": {
               minWidth: "380px",
+              fontSize: "15px",
             },
             "@media (max-width: 540px)": {
               minWidth: "300px",
-              fontSize: "0.8rem",
+              fontSize: "12px",
             },
             "@media (max-width: 430px)": {
               minWidth: "280px",
+              fontSize: "10px",
             },
           }}
         >
