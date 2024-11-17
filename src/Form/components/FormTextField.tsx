@@ -75,8 +75,6 @@ export const FormTextField = <T extends FieldValues>({
           {`${label}を入力してください`}
         </Typography>
         <TextField
-          label={label}
-          InputLabelProps={{ shrink: false }}
           rows={rows}
           placeholder={placeholder}
           sx={sx}
