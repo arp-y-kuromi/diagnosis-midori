@@ -23,7 +23,6 @@ export const SentBtn = ({
           alignItems: "center",
           justifyContent: "center",
           display: "flex",
-          mt: "10px",
         }}
       >
         <Button

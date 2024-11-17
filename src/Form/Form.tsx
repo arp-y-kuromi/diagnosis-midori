@@ -15,7 +15,15 @@ import { Footer } from "../Footer/Footer";
 
 const FORM_TEXT_FIELD_SX = {
   width: "500px",
-  mt: "30px",
+  "@media (max-width: 750px)": {
+    width: "380px",
+  },
+  "@media (max-width: 540px)": {
+    width: "300px",
+  },
+  "@media (max-width: 430px)": {
+    width: "280px",
+  },
 };
 
 const DEFAULT_VALUES: FormType = {
@@ -81,7 +89,7 @@ export const Form = () => {
             backgroundPosition: "center",
             backgroundSize: "contain",
             width: "100%",
-            height: "160px",
+            height: "130px",
             "@media (max-width: 650px)": {
               width: "90%",
               height: "120px",
@@ -98,7 +106,7 @@ export const Form = () => {
               display: "flex",
               flexDirection: "column",
               border: "3px solid black",
-              padding: "20px",
+              padding: "30px",
               borderRadius: "8px",
               alignItems: "center",
             }}
@@ -126,7 +134,12 @@ export const Form = () => {
                 sx={FORM_TEXT_FIELD_SX}
                 control={control}
               />
-              <SentBtn name="送信する" type="submit" disabled={!isValid} />
+              <SentBtn
+                name="無料診断する"
+                type="submit"
+                disabled={!isValid}
+                sx={{ width: "200px", height: "50px" }}
+              />
             </form>
           </Box>
         </Card>

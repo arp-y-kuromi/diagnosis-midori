@@ -48,11 +48,32 @@ export const FormTextField = <T extends FieldValues>({
         "@media (max-width: 430px)": {
           width: "280px",
         },
+        mb: "10px",
       }}
     >
-      <Box sx={{ display: "flex", alignItems: "center" }}>
+      <Box
+        sx={{ display: "flex", alignItems: "center", flexDirection: "column" }}
+      >
+        <Typography
+          sx={{
+            minWidth: "500px",
+            "@media (max-width: 750px)": {
+              minWidth: "380px",
+            },
+            "@media (max-width: 540px)": {
+              minWidth: "300px",
+              fontSize: "0.8rem",
+            },
+            "@media (max-width: 430px)": {
+              minWidth: "280px",
+            },
+          }}
+        >
+          {`${label}を入力してください`}
+        </Typography>
         <TextField
           label={label}
+          InputLabelProps={{ shrink: false }}
           rows={rows}
           placeholder={placeholder}
           sx={sx}
