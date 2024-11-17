@@ -39,12 +39,7 @@ type SendDataType = {
 } & FormType;
 
 export const Form = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { isValid },
-    reset,
-  } = useForm<FormType>({
+  const { control, handleSubmit, reset } = useForm<FormType>({
     resolver: zodResolver(FormSchema),
     mode: "onBlur",
     defaultValues: DEFAULT_VALUES,
@@ -137,7 +132,6 @@ export const Form = () => {
               <SentBtn
                 name="無料診断する"
                 type="submit"
-                disabled={!isValid}
                 sx={{ width: "200px", height: "50px" }}
               />
             </form>
