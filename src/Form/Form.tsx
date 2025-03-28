@@ -1,17 +1,17 @@
-import { Box, Card } from "@mui/material";
-import { formPosition, pagePosition } from "../Page/Question/style";
-import img_midori_FV from "../Image/img_midori_FV.png";
-import { FormTextField } from "./components/FormTextField";
-import { FormMessage } from "./components/FormMessage";
-import { SentBtn } from "./components/SentBtn";
-import { useForm } from "react-hook-form";
-import { FormSchema, FormType } from "./schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser";
-import { loanAmountAtom, loanPeriodAtom, repaymentAtom } from "../Atom/Atom";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Box, Card } from "@mui/material";
 import { useAtom } from "jotai";
+import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
+import { loanAmountAtom, loanPeriodAtom, repaymentAtom } from "../Atom/Atom";
 import { Footer } from "../Footer/Footer";
+import img_midori_FV from "../Image/img_midori_FV.png";
+import { formPosition, pagePosition } from "../Page/Question/style";
+import { FormMessage } from "./components/FormMessage";
+import { FormTextField } from "./components/FormTextField";
+import { SentBtn } from "./components/SentBtn";
+import { FormSchema, FormType } from "./schema";
 
 const FORM_TEXT_FIELD_SX = {
   width: "500px",
@@ -130,7 +130,7 @@ export const Form = () => {
                 control={control}
               />
               <SentBtn
-                name="無料診断する"
+                name="無料相談する"
                 type="submit"
                 sx={{ width: "200px", height: "50px" }}
               />
