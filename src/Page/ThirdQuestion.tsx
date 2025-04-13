@@ -1,6 +1,6 @@
 import { Dispatch, SetStateAction } from "react";
-import { Question } from "./Question/Question";
 import { useNavigate } from "react-router-dom";
+import { Question } from "./Question/Question";
 
 type ThirdQuestionProps = {
   repayment: string;
@@ -22,11 +22,11 @@ export const ThirdQuestion = ({
     <>
       <Question
         question="Q3.返済について教えてください"
-        firstBtn="支払うことができる"
+        firstBtn="支払いができる"
         secondBtn="できれば減らしたい"
         thirdBtn="支払いができない"
         fourthBtn="一旦相談したい"
-        onClickFirst={() => handleClick("支払うことができる")}
+        onClickFirst={() => handleClick("支払いができる")}
         onClickSecond={() => handleClick("できれば減らしたい")}
         onClickThird={() => handleClick("支払いができない")}
         onClickFourth={() => handleClick("一旦相談したい")}
