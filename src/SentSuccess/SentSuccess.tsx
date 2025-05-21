@@ -46,7 +46,23 @@ export const SentSuccess = () => {
                 color: "green",
               }}
             >
-              送信されました。事務所からのお電話をお待ちください。
+              お問合せが完了しました。
+              <br />
+              みどり法務事務所からのお電話をお待ちください。
+              <br />
+              フリーダイヤル
+              <Box
+                component="span"
+                sx={{
+                  fontSize: "1.2rem",
+                  color: "red",
+                  fontWeight: "bold",
+                  ml: 1,
+                }}
+              >
+                0120-50-60-70
+              </Box>
+              からご連絡させて頂きます。
             </Typography>
           </Box>
         </Card>
