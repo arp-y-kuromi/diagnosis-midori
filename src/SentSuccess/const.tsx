@@ -1,3 +1,7 @@
+/* --- Meta Pixel へ Lead を送信 --- */
+// 型エラーを避ける: グローバル宣言
+declare const fbq: (...args: any[]) => void;
+
 // tracking.ts または utils.ts に保存
 export const trackSentSuccess = () => {
   const PV = "phv3eb4tk4gk";
@@ -39,4 +43,9 @@ export const trackSentSuccess = () => {
   const xhr = new XMLHttpRequest();
   xhr.open("GET", turl);
   xhr.send();
+
+  /* --- Meta Pixel へ Lead を送信 --- */
+  if (typeof window !== "undefined" && typeof fbq === "function") {
+    fbq("track", "Lead");
+  }
 };
