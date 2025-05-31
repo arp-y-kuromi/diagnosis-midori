@@ -1,3 +1,6 @@
+// trackSentSuccess.ts などの最上部
+declare const fbq: (...args: any[]) => void;
+
 // tracking.ts または utils.ts に保存
 export const trackSentSuccess = () => {
   const PV = "phv3eb4tk4gk";
@@ -39,4 +42,8 @@ export const trackSentSuccess = () => {
   const xhr = new XMLHttpRequest();
   xhr.open("GET", turl);
   xhr.send();
+  // Meta Pixel – Lead
+  if (typeof fbq === "function") {
+    fbq("track", "Lead");
+  }
 };
